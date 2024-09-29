@@ -3,7 +3,7 @@ from rest_framework import status,decorators
 from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
 from django.shortcuts import redirect
-from .serializer import UrlSerializer
+from .serializer import UrlSerializer, UrlStatsSerializer
 from rest_framework import viewsets
 from .models import Url
 import shortuuid
@@ -39,6 +39,16 @@ class UrlViewSet(viewsets.ModelViewSet):
             return Response(serializer.data)
         except Url.DoesNotExist:
             return Response({'error': 'URL not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    def retrieve_stats(self, request, *args, **kwargs):
+        shortcode = kwargs.get(self.lookup_field)
+        try:
+            short_url = self.get_object()
+            serializer = UrlStatsSerializer(short_url)
+            return Response(serializer.data)
+        except Url.DoesNotExist:
+            return Response({'error': 'URL not found'}, status=status.HTTP_404_NOT_FOUND)
+        
 
     def destroy(self, request, *args, **kwargs):
         shortcode = kwargs.get(self.lookup_field)

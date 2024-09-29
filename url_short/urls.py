@@ -7,4 +7,5 @@ router.register(r'urls', UrlViewSet)  # Registers the ViewSet with all the stand
 
 urlpatterns = [
     path('', include(router.urls)),  # This should include all the URLs from the router
+    path('shorten/<str:shortcode>/stats/', UrlViewSet.as_view({'get':'retrieve_stats'}), name='stats-details')
 ]

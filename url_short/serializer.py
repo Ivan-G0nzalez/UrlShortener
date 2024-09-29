@@ -18,3 +18,8 @@ class UrlSerializer(serializers.ModelSerializer):
         if len(value) < 6:
             raise serializers.ValidationError("Shortcode must be at least 6 characters long")
         return value
+
+class UrlStatsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Url
+        fields = ['id', 'url', 'shortcode', 'created_at', 'updated_at']
