@@ -4,8 +4,8 @@ from .models import Url
 class UrlSerializer(serializers.ModelSerializer):
     class Meta:
         model = Url
-        fields = ['id', 'url', 'shortcode', 'created_at', 'updated_at', 'counter']
-        read_only_fields = ['created_at', 'updated_at', 'counter']
+        fields = ['id', 'url', 'shortcode', 'created_at', 'updated_at']
+        read_only_fields = ['created_at', 'updated_at']
     
     def validate_url(self, value):
         # Custom validation to check URL format
@@ -22,4 +22,5 @@ class UrlSerializer(serializers.ModelSerializer):
 class UrlStatsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Url
-        fields = ['id', 'url', 'shortcode', 'created_at', 'updated_at']
+        fields = ['id', 'url', 'shortcode', 'created_at', 'updated_at', 'counter']
+        read_only_fields = ['created_at', 'updated_at', 'counter']
