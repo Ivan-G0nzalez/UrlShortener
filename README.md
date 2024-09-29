@@ -67,3 +67,9 @@ Start the Django development server:
 ```bash
 python manage.py runserver
 ```
+
+Now, the server should be running at http://localhost:8000/.
+
+<br>
+
+Roadmap from: https://roadmap.sh/projects/url-shortening-service
